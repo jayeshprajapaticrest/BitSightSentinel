@@ -24,45 +24,53 @@
             "type": "string",
             "defaultValue": "<Companies>"
         },
-		"alerts_data_table":{
+	"alerts_data_table":{
             "type": "string",
             "defaultValue": "Alerts_data"
         },
-		"company_data_table_name":{
+	"Breaches_Table_Name":{
+            "type": "string",
+            "defaultValue": "Breaches_data"
+        },
+	"company_data_table_name":{
             "type": "string",
             "defaultValue": "Company_details"
         },
-		"company_rating_details_table_name":{
+	"company_rating_details_table_name":{
             "type": "string",
             "defaultValue": "Company_rating_details"
         },
-		"diligence_historical_statistics_table":{
+	"diligence_historical_statistics_table":{
             "type": "string",
             "defaultValue": "Diligence_historical_statistics"
         },
-		"diligence_statistics_table":{
+	"diligence_statistics_table":{
             "type": "string",
             "defaultValue": "Diligence_Statistics"
         },
-		"findings_summary_table_name":{
+	"findings_summary_table_name":{
             "type": "string",
             "defaultValue": "Findings_summary"
         },
-		"findings_table_name":{
+	"findings_table_name":{
             "type": "string",
             "defaultValue": "Findings_data"
         },
-		"graph_data_table":{
+	"graph_data_table":{
             "type": "string",
             "defaultValue": "Graph_data"
         },
-		"industrial_statistics_table":{
+	"industrial_statistics_table":{
             "type": "string",
             "defaultValue": "Industrial_statistics"
         },
-		"observation_statistics_table":{
+	"observation_statistics_table":{
             "type": "string",
             "defaultValue": "Observation_statistics"
+        },
+        "LogLevel":{
+            "type": "string",
+            "defaultValue": "1"
         },
         "BitSightSchedule":{
             "type": "string",
@@ -199,6 +207,7 @@
                         "API_token": "[parameters('API_token')]",
 						"Companies": "[parameters('Companies')]",
 						"alerts_data_table": "[parameters('alerts_data_table')]",
+						"Breaches_Table_Name": "[parameters('Breaches_Table_Name')]",
 						"company_data_table_name": "[parameters('company_data_table_name')]",
 						"company_rating_details_table_name": "[parameters('company_rating_details_table_name')]",
 						"diligence_historical_statistics_table": "[parameters('diligence_historical_statistics_table')]",
@@ -208,8 +217,9 @@
 						"graph_data_table": "[parameters('graph_data_table')]",
 						"industrial_statistics_table": "[parameters('industrial_statistics_table')]",
 						"observation_statistics_table": "[parameters('observation_statistics_table')]",
-                        "Schedule": "[parameters('BitSightSchedule')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/jayeshprajapaticrest/BitSightSentinel/blob/main/BitSight.zip?raw=true"
+                        			"LogLevel": "[parameters('LogLevel')]",
+                        			"Schedule": "[parameters('BitSightSchedule')]",
+                        			"WEBSITE_RUN_FROM_PACKAGE": "https://github.com/jayeshprajapaticrest/BitSightSentinel/blob/main/BitSight.zip?raw=true"
                     }
                 }
             ]
