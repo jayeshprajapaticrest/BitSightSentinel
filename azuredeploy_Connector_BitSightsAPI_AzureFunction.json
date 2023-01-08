@@ -70,7 +70,7 @@
         },
         "LogLevel":{
             "type": "string",
-            "defaultValue": "1"
+            "defaultValue": "DEBUG"
         },
         "BitSightSchedule":{
             "type": "string",
