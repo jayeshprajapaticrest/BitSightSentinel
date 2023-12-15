@@ -10,71 +10,85 @@
         },
         "WorkspaceID": {
             "type": "string",
-            "defaultValue": "<workspaceID>"
+			"minLength": 1
         },
         "WorkspaceKey": {
             "type": "securestring",
-            "defaultValue": "<workspaceKey>"
+			"minLength": 1
         },
         "API_token": {
             "type": "securestring",
-            "defaultValue": "<API_token>"
+			"minLength": 1
         },
         "Companies":{
             "type": "string",
-            "defaultValue": "<Companies>"
+            "defaultValue": "ALL",
+            "metadata": {
+                "description": "Please add valid company names separated by slash(/). For example: Actors Films/Goliath Investments LLC/HCL Group/Saperix, Inc."
+            }
         },
-	"alerts_data_table":{
+		"Alerts_Table_Name":{
             "type": "string",
             "defaultValue": "Alerts_data"
         },
-	"Breaches_Table_Name":{
+        "Breaches_Table_Name":{
             "type": "string",
             "defaultValue": "Breaches_data"
         },
-	"company_data_table_name":{
+		"Company_Table_Name":{
             "type": "string",
             "defaultValue": "Company_details"
         },
-	"company_rating_details_table_name":{
+		"Company_Rating_Details_Table_Name":{
             "type": "string",
             "defaultValue": "Company_rating_details"
         },
-	"diligence_historical_statistics_table":{
+		"Diligence_Historical_Statistics_Table_Name":{
             "type": "string",
             "defaultValue": "Diligence_historical_statistics"
         },
-	"diligence_statistics_table":{
+		"Diligence_Statistics_Table_Name":{
             "type": "string",
-            "defaultValue": "Diligence_Statistics"
+            "defaultValue": "Diligence_statistics"
         },
-	"findings_summary_table_name":{
+		"Findings_Summary_Table_Name":{
             "type": "string",
             "defaultValue": "Findings_summary"
         },
-	"findings_table_name":{
+		"Findings_Table_Name":{
             "type": "string",
             "defaultValue": "Findings_data"
         },
-	"graph_data_table":{
+		"Graph_Table_Name":{
             "type": "string",
             "defaultValue": "Graph_data"
         },
-	"industrial_statistics_table":{
+		"Industrial_Statistics_Table_Name":{
             "type": "string",
             "defaultValue": "Industrial_statistics"
         },
-	"observation_statistics_table":{
+		"Observation_Statistics_Table_Name":{
             "type": "string",
             "defaultValue": "Observation_statistics"
         },
         "LogLevel":{
             "type": "string",
-            "defaultValue": "DEBUG"
+            "defaultValue": "DEBUG",
+            "metadata": {
+                "description": "Please add log level or log severity value. By default it is set to DEBUG."
+            },
+			"allowedValues": [
+                "DEBUG",
+				"INFO",
+				"ERROR"
+                ]
         },
-        "BitSightSchedule":{
+        "BitsightSchedule":{
             "type": "string",
-            "defaultValue": "<Cron Expression>"
+            "defaultValue": "0 0 0 * * *",
+            "metadata": {
+                "description": "Please enter a valid Quartz cron-expression. The default value is 24 hours."
+            }
         }
     },
     "variables": {
@@ -196,7 +210,7 @@
                         "[concat('Microsoft.Web/sites/', variables('FunctionName'))]"
                     ],
                     "properties": {
-                        "FUNCTIONS_EXTENSION_VERSION": "~3",
+                        "FUNCTIONS_EXTENSION_VERSION": "~4",
                         "FUNCTIONS_WORKER_RUNTIME": "python",
                         "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.insights/components', variables('FunctionName')), '2015-05-01').InstrumentationKey]",
                         "APPLICATIONINSIGHTS_CONNECTION_STRING": "[reference(resourceId('microsoft.insights/components', variables('FunctionName')), '2015-05-01').ConnectionString]",
@@ -206,20 +220,20 @@
                         "WorkspaceKey": "[parameters('WorkspaceKey')]",
                         "API_token": "[parameters('API_token')]",
 						"Companies": "[parameters('Companies')]",
-						"alerts_data_table": "[parameters('alerts_data_table')]",
-						"Breaches_Table_Name": "[parameters('Breaches_Table_Name')]",
-						"company_data_table_name": "[parameters('company_data_table_name')]",
-						"company_rating_details_table_name": "[parameters('company_rating_details_table_name')]",
-						"diligence_historical_statistics_table": "[parameters('diligence_historical_statistics_table')]",
-						"diligence_statistics_table": "[parameters('diligence_statistics_table')]",
-						"findings_summary_table_name": "[parameters('findings_summary_table_name')]",
-						"findings_table_name": "[parameters('findings_table_name')]",
-						"graph_data_table": "[parameters('graph_data_table')]",
-						"industrial_statistics_table": "[parameters('industrial_statistics_table')]",
-						"observation_statistics_table": "[parameters('observation_statistics_table')]",
-                        			"LogLevel": "[parameters('LogLevel')]",
-                        			"Schedule": "[parameters('BitSightSchedule')]",
-                        			"WEBSITE_RUN_FROM_PACKAGE": "https://github.com/jayeshprajapaticrest/BitSightSentinel/blob/main/BitSight.zip?raw=true"
+						"Alerts_Table_Name": "[parameters('Alerts_Table_Name')]",
+                        "Breaches_Table_Name": "[parameters('Breaches_Table_Name')]",
+						"Company_Table_Name": "[parameters('Company_Table_Name')]",
+						"Company_Rating_Details_Table_Name": "[parameters('Company_Rating_Details_Table_Name')]",
+						"Diligence_Historical_Statistics_Table_Name": "[parameters('Diligence_Historical_Statistics_Table_Name')]",
+						"Diligence_Statistics_Table_Name": "[parameters('Diligence_Statistics_Table_Name')]",
+						"Findings_Summary_Table_Name": "[parameters('Findings_Summary_Table_Name')]",
+						"Findings_Table_Name": "[parameters('Findings_Table_Name')]",
+						"Graph_Table_Name": "[parameters('Graph_Table_Name')]",
+						"Industrial_Statistics_Table_Name": "[parameters('Industrial_Statistics_Table_Name')]",
+						"Observation_Statistics_Table_Name": "[parameters('Observation_Statistics_Table_Name')]",
+                        "LogLevel": "[parameters('LogLevel')]",
+                        "Schedule": "[parameters('BitSightSchedule')]",
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://aka.ms/sentinel-BitSight-functionapp"
                     }
                 }
             ]
